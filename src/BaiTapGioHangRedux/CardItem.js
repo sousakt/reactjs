@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-
-export default class CardItem extends Component {
+import { actDelete, actTangGiamSL } from "../redux/actions";
+import { connect } from "react-redux";
+class CardItem extends Component {
   render() {
     return (
       <tr className="card-item">
@@ -12,7 +13,12 @@ export default class CardItem extends Component {
         <td>
           <button
             onClick={() => {
-              this.props.handleTangGiam(this.props.cart, false);
+              const data = {
+                product: this.props.cart,
+                status: false,
+              };
+              this.props.tangGiamSL(data);
+              //this.props.handleTangGiam(this.props.cart, false);
             }}
           >
             -
@@ -20,7 +26,12 @@ export default class CardItem extends Component {
           {this.props.cart.soLuong}
           <button
             onClick={() => {
-              this.props.handleTangGiam(this.props.cart, true);
+              const data = {
+                product: this.props.cart,
+                status: true,
+              };
+              this.props.tangGiamSL(data);
+              //this.props.handleTangGiam(this.props.cart, true);
             }}
           >
             +
@@ -32,7 +43,7 @@ export default class CardItem extends Component {
           <button
             className="btn btn-danger"
             onClick={() => {
-              this.props.handleDelete(this.props.cart);
+              this.props.deleteProduct(this.props.cart);
             }}
           >
             Delete
@@ -42,3 +53,16 @@ export default class CardItem extends Component {
     );
   }
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    //key:value
+    // key là props của component : value là phương thức gửi action lên store
+    deleteProduct: (product) => {
+      dispatch(actDelete(product));
+    },
+    tangGiamSL: (data) => {
+      dispatch(actTangGiamSL(data));
+    },
+  };
+};
+export default connect(null, mapDispatchToProps)(CardItem);

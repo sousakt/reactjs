@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { actAddProduct, actDetailProduct } from "../redux/actions";
 class SanPham extends Component {
   render() {
     return (
@@ -18,7 +19,7 @@ class SanPham extends Component {
           <button
             className="btn btn-danger"
             onClick={() => {
-              this.props.handleAddSP(this.props.sanPham);
+              this.props.handleAddCart(this.props.sanPham);
             }}
           >
             Thêm giỏ hàng
@@ -28,17 +29,24 @@ class SanPham extends Component {
     );
   }
 }
-const mapDispacthToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     //key:value
     // key là props của component : value là phương thức gửi action lên store
-    handleDetail: (sp) => {
-      const action = {
-        type: "DETAIL_PRODUCT",
-        payload: sp,
-      };
-      dispatch(action);
+    handleDetail: (product) => {
+      // const action = {
+      //   type: "DETAIL_PRODUCT",
+      //   payload: sp,
+      // };
+      dispatch(actDetailProduct(product));
+    },
+    handleAddCart: (product) => {
+      // const action = {
+      //   type: "ADD_PRODUCT",
+      //   payload: product,
+      // };
+      dispatch(actAddProduct(product));
     },
   };
 };
-export default connect(null, mapDispacthToProps)(SanPham);
+export default connect(null, mapDispatchToProps)(SanPham);

@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import CardItem from "./CardItem";
+import { connect } from "react-redux";
 
-export default class Modal extends Component {
-
-    renderCardList = () =>{
-        return this.props.danhSachGioHang.map((cart,index)=>{
-            return <CardItem 
-            handleDelete = {this.props.handleDelete}
-            handleTangGiam={this.props.handleTangGiam}
-            cart={cart} key={index}/>
-        });
-    }
+class Modal extends Component {
+  renderCardList = () => {
+    return this.props.danhSachGioHang.map((cart, index) => {
+      return (
+        <CardItem
+          // handleDelete={this.props.handleDelete}
+          // handleTangGiam={this.props.handleTangGiam}
+          cart={cart}
+          key={index}
+        />
+      );
+    });
+  };
 
   render() {
     return (
@@ -51,9 +55,7 @@ export default class Modal extends Component {
                     <th>thành tiền</th>
                   </tr>
                 </thead>
-                <tbody>
-                   {this.renderCardList()}
-                </tbody>
+                <tbody>{this.renderCardList()}</tbody>
               </table>
             </div>
             <div className="modal-footer">
@@ -74,3 +76,12 @@ export default class Modal extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    //key:value
+    // key là props của component : value là state được lưu trữ trên store
+    danhSachGioHang: state.gioHangReducer.danhSachGioHang,
+  };
+};
+export default connect(mapStateToProps, null)(Modal);

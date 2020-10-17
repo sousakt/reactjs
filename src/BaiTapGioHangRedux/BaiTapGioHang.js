@@ -56,94 +56,94 @@ class BaiTapGioHang extends Component {
   //   },
   // ];
 
-  state = {
-    // sanPhamChiTiet: {
-    //   maSanPham: "1",
-    //   hinhAnh: "./img/vsphone.jpg",
-    //   manHinh: `AMOLED, 6.2", Full HD+`,
-    //   heDieuHanh: "Android 9.0 (Pie)",
-    //   cameraTruoc: "20 MP",
-    //   cameraSau: "Chính 48 MP & Phụ 8 MP, 5 MP",
-    //   ram: "4 GB",
-    //   rom: "6 GB",
-    // },
-    danhSachGioHang: [],
-  };
+  // state = {
+  //   // sanPhamChiTiet: {
+  //   //   maSanPham: "1",
+  //   //   hinhAnh: "./img/vsphone.jpg",
+  //   //   manHinh: `AMOLED, 6.2", Full HD+`,
+  //   //   heDieuHanh: "Android 9.0 (Pie)",
+  //   //   cameraTruoc: "20 MP",
+  //   //   cameraSau: "Chính 48 MP & Phụ 8 MP, 5 MP",
+  //   //   ram: "4 GB",
+  //   //   rom: "6 GB",
+  //   // },
+  //   danhSachGioHang: [],
+  // };
 
-  handleDetail = (sanPham) => {
-    //console.log("run handleDetail");
-    //set State
-    this.setState({
-      sanPhamChiTiet: sanPham,
-    });
-  };
+  // handleDetail = (sanPham) => {
+  //   //console.log("run handleDetail");
+  //   //set State
+  //   this.setState({
+  //     sanPhamChiTiet: sanPham,
+  //   });
+  // };
 
-  handleAddSP = (sanPham) => {
-    //console.log("sanPham : ", sanPham);
-    let danhSachGioHang = [...this.state.danhSachGioHang];
-    /**
-     * tim xem co ton tai trong mang hay khong
-     * neu co ton tai thi tra ve Index
-     * neu khong ton tai thi tra ve -1
-     */
-    const index = danhSachGioHang.findIndex((cart) => {
-      return cart.maSanPham === sanPham.maSanPham;
-    });
-    if (index !== -1) {
-      //tim thay
-      //cap nhat so luong
-      danhSachGioHang[index].soLuong += 1;
-    } else {
-      //khong tim thay
-      //set so luong = 1 , push vao mang
-      sanPham.soLuong = 1;
-      // danhSachGioHang.push(sanPham);
-      danhSachGioHang = [...danhSachGioHang, sanPham];
-    }
-    //setState
-    this.setState({
-      danhSachGioHang: danhSachGioHang,
-    });
-  };
+  // handleAddSP = (sanPham) => {
+  //   //console.log("sanPham : ", sanPham);
+  //   let danhSachGioHang = [...this.state.danhSachGioHang];
+  //   /**
+  //    * tim xem co ton tai trong mang hay khong
+  //    * neu co ton tai thi tra ve Index
+  //    * neu khong ton tai thi tra ve -1
+  //    */
+  //   const index = danhSachGioHang.findIndex((cart) => {
+  //     return cart.maSanPham === sanPham.maSanPham;
+  //   });
+  //   if (index !== -1) {
+  //     //tim thay
+  //     //cap nhat so luong
+  //     danhSachGioHang[index].soLuong += 1;
+  //   } else {
+  //     //khong tim thay
+  //     //set so luong = 1 , push vao mang
+  //     sanPham.soLuong = 1;
+  //     // danhSachGioHang.push(sanPham);
+  //     danhSachGioHang = [...danhSachGioHang, sanPham];
+  //   }
+  //   //setState
+  //   this.setState({
+  //     danhSachGioHang: danhSachGioHang,
+  //   });
+  // };
 
-  handleDelete = (cart) => {
-    console.log("delete", cart);
-    let danhSachGioHang = [...this.state.danhSachGioHang];
-    danhSachGioHang = danhSachGioHang.filter((item) => {
-      return cart.maSanPham !== item.maSanPham;
-    });
-    this.setState({
-      danhSachGioHang,
-    });
-  };
+  // handleDelete = (cart) => {
+  //   console.log("delete", cart);
+  //   let danhSachGioHang = [...this.state.danhSachGioHang];
+  //   danhSachGioHang = danhSachGioHang.filter((item) => {
+  //     return cart.maSanPham !== item.maSanPham;
+  //   });
+  //   this.setState({
+  //     danhSachGioHang,
+  //   });
+  // };
 
-  handleTangGiam = (sanPham, status) => {
-    // console.log(cart, status);
-    let danhSachGioHang = [...this.state.danhSachGioHang];
-    //cách viết khác
-    // let {danhSachGioHang} = this.state;
-    const index = danhSachGioHang.findIndex((cart) => {
-      return cart.maSanPham === sanPham.maSanPham;
-    });
-    if (index !== -1) {
-      //tim thay
-      //cap nhat so luong
-      if (status) {
-        danhSachGioHang[index].soLuong += 1;
-      } else {
-        if (danhSachGioHang[index].soLuong > 0) {
-          danhSachGioHang[index].soLuong -= 1;
-        }
-      }
-    }
-    if (danhSachGioHang[index].soLuong == 0) {
-      this.handleDelete(sanPham);
-    } else {
-      this.setState({
-        danhSachGioHang,
-      });
-    }
-  };
+  // handleTangGiam = (sanPham, status) => {
+  //   // console.log(cart, status);
+  //   let danhSachGioHang = [...this.state.danhSachGioHang];
+  //   //cách viết khác
+  //   // let {danhSachGioHang} = this.state;
+  //   const index = danhSachGioHang.findIndex((cart) => {
+  //     return cart.maSanPham === sanPham.maSanPham;
+  //   });
+  //   if (index !== -1) {
+  //     //tim thay
+  //     //cap nhat so luong
+  //     if (status) {
+  //       danhSachGioHang[index].soLuong += 1;
+  //     } else {
+  //       if (danhSachGioHang[index].soLuong > 0) {
+  //         danhSachGioHang[index].soLuong -= 1;
+  //       }
+  //     }
+  //   }
+  //   if (danhSachGioHang[index].soLuong == 0) {
+  //     this.handleDelete(sanPham);
+  //   } else {
+  //     this.setState({
+  //       danhSachGioHang,
+  //     });
+  //   }
+  // };
 
   renderDanhSachSanPham = () => {
     return this.props.danhSachSanPham.map((sanPham, index) => {
@@ -151,8 +151,7 @@ class BaiTapGioHang extends Component {
         <div className="col-sm-4">
           <SanPham
             // handleDetail={this.handleDetail}
-
-            handleAddSP={this.handleAddSP}
+            //handleAddSP={this.handleAddSP}
             sanPham={sanPham}
           />
         </div>
@@ -161,7 +160,8 @@ class BaiTapGioHang extends Component {
   };
 
   renderTotal = () => {
-    let { danhSachGioHang } = this.state;
+    //let { danhSachGioHang } = this.state;
+    let { danhSachGioHang } = this.props;
     let total = danhSachGioHang.reduce((tong, cartHienTai) => {
       return tong + cartHienTai.soLuong;
     }, 0);
@@ -187,9 +187,9 @@ class BaiTapGioHang extends Component {
               <div className="row">{this.renderDanhSachSanPham()};</div>
             </div>
             <Modal
-              danhSachGioHang={this.state.danhSachGioHang}
-              handleDelete={this.handleDelete}
-              handleTangGiam={this.handleTangGiam}
+            // danhSachGioHang={this.state.danhSachGioHang}
+            // handleDelete={this.handleDelete}
+            // handleTangGiam={this.handleTangGiam}
             />
             <div className="row">
               <div className="col-sm-5">
@@ -244,6 +244,7 @@ const mapStateToProps = (state) => {
     // key là props của component : value là state được lưu trữ trên store
     danhSachSanPham: state.gioHangReducer.danhSachSanPham,
     sanPhamChiTiet: state.gioHangReducer.sanPhamChiTiet,
+    danhSachGioHang: state.gioHangReducer.danhSachGioHang,
   };
 };
 export default connect(mapStateToProps)(BaiTapGioHang);

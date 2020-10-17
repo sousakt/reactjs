@@ -12,8 +12,11 @@ import "../node_modules/bootstrap/dist/js/bootstrap.min";
 import "../node_modules/jquery/dist/jquery.slim.min";
 import "../node_modules/popper.js/dist/umd/popper.min";
 
+//tạo store
 import { createStore } from "redux";
+//tạo sự kết nối giữa react - redux
 import { Provider } from "react-redux";
+
 import rootReducer from "./redux/reducers";
 
 const store = createStore(

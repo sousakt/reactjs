@@ -1,5 +1,10 @@
-import { bindActionCreators } from "redux";
-
+//import { bindActionCreators } from "redux";
+import {
+  DELETE_PRODUCT,
+  TANG_GIAM_SL,
+  DETAIL_PRODUCT,
+  ADD_PRODUCT,
+} from "../constants";
 const initialState = {
   sanPhamChiTiet: {
     maSanPham: "1",
@@ -54,8 +59,69 @@ const initialState = {
 
 const gioHangReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "DETAIL_PRODUCT": {
+    case DETAIL_PRODUCT: {
       state.sanPhamChiTiet = action.payload;
+      return { ...state };
+    }
+    case ADD_PRODUCT: {
+      let danhSachGioHang = [...state.danhSachGioHang];
+      const index = state.danhSachGioHang.findIndex((item) => {
+        return item.maSanPham === action.payload.maSanPham;
+      });
+      if (index !== -1) {
+        //tim thay
+        //cap nhat so luong
+        const product = { ...danhSachGioHang[index] };
+        product.soLuong += 1;
+        danhSachGioHang[index] = product;
+      } else {
+        //khong tim thay
+        //set so luong = 1 , push vao mang
+        action.payload.soLuong = 1;
+        // danhSachGioHang.push(sanPham);
+        danhSachGioHang = [...danhSachGioHang, action.payload];
+      }
+      state.danhSachGioHang = danhSachGioHang;
+      return { ...state };
+    }
+    case DELETE_PRODUCT: {
+      let danhSachGioHang = [...state.danhSachGioHang];
+      danhSachGioHang = danhSachGioHang.filter((item) => {
+        return action.payload.maSanPham !== item.maSanPham;
+      });
+      state.danhSachGioHang = danhSachGioHang;
+      return { ...state };
+    }
+    case TANG_GIAM_SL: {
+      let danhSachGioHang = [...state.danhSachGioHang];
+
+      //cách viết khác
+      // let {danhSachGioHang} = this.state;
+      const index = danhSachGioHang.findIndex((cart) => {
+        return cart.maSanPham === action.payload.product.maSanPham;
+      });
+      if (index !== -1) {
+        //tim thay
+        //cap nhat so luong
+        const product = { ...danhSachGioHang[index] };
+        if (action.payload.status) {
+          product.soLuong += 1;
+          danhSachGioHang[index] = product;
+          // danhSachGioHang[index].soLuong += 1;
+        } else {
+          if (product.soLuong > 0) {
+            product.soLuong -= 1;
+            danhSachGioHang[index] = product;
+            // danhSachGioHang[index].soLuong -= 1;
+          }
+        }
+      }
+      if (danhSachGioHang[index].soLuong == 0) {
+        danhSachGioHang = danhSachGioHang.filter((item) => {
+          return action.payload.product.maSanPham !== item.maSanPham;
+        });
+      }
+      state.danhSachGioHang = danhSachGioHang;
       return { ...state };
     }
     default:
