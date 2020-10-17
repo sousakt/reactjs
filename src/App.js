@@ -9,6 +9,9 @@ import FunctionEvent from "./HandleEvents/FunctionEvent";
 import ClassEvents from "./HandleEvents/ClassEvents";
 import DemoConditionalAndState from "./DemoLogin/DemoConditionalAndState";
 import BaiTapChonMauXe from "./BaiTapChonMauXe";
+import DemoCourse from "./ListAndKeys/DemoCourse";
+import DemoProps from "./Props/DemoProps";
+import BaiTapGioHangRedux from "./BaiTapGioHangRedux/BaiTapGioHang";
 function App() {
   return (
     <div>
@@ -19,7 +22,10 @@ function App() {
       {/* <FunctionEvent /> */}
       {/* <ClassEvents /> */}
       {/* <DemoConditionalAndState /> */}
-      <BaiTapChonMauXe />
+      {/* <BaiTapChonMauXe /> */}
+      {/* <DemoCourse /> */}
+      {/* <DemoProps /> */}
+      <BaiTapGioHangRedux />
     </div>
   );
 }
